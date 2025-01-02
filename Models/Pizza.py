@@ -26,6 +26,10 @@ class Pizza:
         "Supreme": ["Cheese", "Ham", "Salami", "Bell Pepper", "Mushrooms", "Olives"],
     }
 
+    def calculate_price(self):
+        """Calculate the total price of the pizza."""
+        return sum(topping.price for topping in self.toppings)
+
     @classmethod
     def create_basic_pizzas(cls):
         pizzas = []
