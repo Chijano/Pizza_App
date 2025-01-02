@@ -17,6 +17,14 @@ class Topping:
         "Bacon": 35,
         "Onion": 10,
         "Garlic": 5,
+        "Chicken": 40,
+        "Mozzarella": 30,
+        "Parmesan": 35,
+        "Blue Cheese": 40,
+        "Shrimp": 50,
+        "Tuna": 45,
+        "Jalapeños": 15,
+        "BBQ Sauce": 10,
     }
 
     @classmethod
