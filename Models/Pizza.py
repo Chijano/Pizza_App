@@ -24,8 +24,8 @@ class Pizza:
 
 def add_topping(topping_name):
     def decorator(pizza_func):
-        def wrapper():
-            pizza = pizza_func()
+        def wrapper(*args, **kwargs):
+            pizza = pizza_func(*args, **kwargs)  # Pass all arguments to the pizza function
             topping_price = Topping.toppings.get(topping_name, 0)
             pizza.description += f", {topping_name}"
             pizza.price += topping_price
@@ -36,70 +36,79 @@ def add_topping(topping_name):
 
 @add_topping("Cheese")
 @add_topping("Ham")
-def classic_pizza():
-    return Pizza(size="Medium")
+def classic_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("Salami")
 @add_topping("Mushrooms")
-def salami_mushroom_pizza():
-    return Pizza(size="Medium")
+def salami_mushroom_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("Olives")
 @add_topping("Bell Pepper")
 @add_topping("Onion")
-def vegetarian_pizza():
-    return Pizza(size="Medium")
+def vegetarian_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("BBQ Sauce")
 @add_topping("Chicken")
 @add_topping("Cheese")
-def bbq_chicken_pizza():
-    return Pizza(size="Medium")
+def bbq_chicken_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("Shrimp")
 @add_topping("Mozzarella")
 @add_topping("Garlic")
-def seafood_pizza():
-    return Pizza(size="Medium")
+def seafood_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("Bacon")
 @add_topping("Cheese")
 @add_topping("Onion")
-def bacon_onion_pizza():
-    return Pizza(size="Medium")
+def bacon_onion_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("Blue Cheese")
-@add_topping("Parmesan")
 @add_topping("Cheese")
 @add_topping("Mozzarella")
-def four_cheese_pizza():
-    return Pizza(size="Medium")
+def four_cheese_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("Tuna")
 @add_topping("Onion")
-def tuna_onion_pizza():
-    return Pizza(size="Medium")
+def tuna_onion_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("Jalapeños")
 @add_topping("Salami")
 @add_topping("Mozzarella")
-def spicy_salami_pizza():
-    return Pizza(size="Medium")
+def spicy_salami_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 @add_topping("Pineapple")
 @add_topping("Cheese")
 @add_topping("Ham")
-def hawaiian_pizza():
-    return Pizza(size="Medium")
+def hawaiian_pizza(size="Medium"):
+    pizza = Pizza(size=size)
+    return pizza
 
 
 recipes = [
