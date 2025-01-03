@@ -25,7 +25,7 @@ class Order:
     def __init__(self):
         self.items = []
         self.total_amount = 0
-        self.payment_strategy = None  # No type hint
+        self.payment_strategy = None
 
     def add_item(self, item_name: str, price: float):
         self.items.append((item_name, price))
