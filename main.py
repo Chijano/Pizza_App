@@ -1,7 +1,7 @@
-import tkinter as tk
-from View.MainMenu import PizzaAppView
+from Controller.MainController import MainController
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = PizzaAppView(root)
-    root.mainloop()
+    controller = MainController()
+    (controller.
+
+     run())

@@ -1,14 +1,17 @@
-from Topping import Topping
-
+from Models.Topping import Topping  # Import the Topping class
 
 class Pizza:
     SIZE_PRICES = {
-        "Small": 0,   # No additional cost for Small
-        "Medium": 50, # Medium adds 50 CZK
-        "Large": 100  # Large adds 100 CZK
+        "Small": 0,
+        "Medium": 50,
+        "Large": 100
     }
 
     def __init__(self, size="Medium"):
+        self.set_size(size)
+
+    def set_size(self, size):
+        """Sets the size and updates the price."""
         if size not in self.SIZE_PRICES:
             raise ValueError(f"Invalid size. Choose from {list(self.SIZE_PRICES.keys())}")
         self.size = size
@@ -21,11 +24,18 @@ class Pizza:
     def get_price(self):
         return self.price
 
+    def __eq__(self, other):
+        """Compare two pizza objects based on size, description, and price."""
+        if isinstance(other, Pizza):
+            return self.description == other.description and self.size == other.size
+        return False
+
 
 def add_topping(topping_name):
+    """Decorator function to add a topping to a pizza."""
     def decorator(pizza_func):
         def wrapper(*args, **kwargs):
-            pizza = pizza_func(*args, **kwargs)  # Pass all arguments to the pizza function
+            pizza = pizza_func(*args, **kwargs)  # Call the pizza creation function
             topping_price = Topping.toppings.get(topping_name, 0)
             pizza.description += f", {topping_name}"
             pizza.price += topping_price
@@ -34,6 +44,7 @@ def add_topping(topping_name):
     return decorator
 
 
+# Define pizza recipes with toppings using decorators
 @add_topping("Cheese")
 @add_topping("Ham")
 def classic_pizza(size="Medium"):
@@ -95,31 +106,15 @@ def tuna_onion_pizza(size="Medium"):
     return pizza
 
 
-@add_topping("Jalapeños")
-@add_topping("Salami")
-@add_topping("Mozzarella")
+@add_topping("Spicy Salami")
+@add_topping("Jalapenos")
 def spicy_salami_pizza(size="Medium"):
     pizza = Pizza(size=size)
     return pizza
 
 
 @add_topping("Pineapple")
-@add_topping("Cheese")
 @add_topping("Ham")
 def hawaiian_pizza(size="Medium"):
     pizza = Pizza(size=size)
     return pizza
-
-
-recipes = [
-    ("Classic Pizza", classic_pizza),
-    ("Salami and Mushroom Pizza", salami_mushroom_pizza),
-    ("Vegetarian Pizza", vegetarian_pizza),
-    ("BBQ Chicken Pizza", bbq_chicken_pizza),
-    ("Seafood Pizza", seafood_pizza),
-    ("Bacon and Onion Pizza", bacon_onion_pizza),
-    ("Four Cheese Pizza", four_cheese_pizza),
-    ("Tuna and Onion Pizza", tuna_onion_pizza),
-    ("Spicy Salami Pizza", spicy_salami_pizza),
-    ("Hawaiian Pizza", hawaiian_pizza),
-]

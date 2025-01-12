@@ -29,4 +29,5 @@ class Topping:
 
     @classmethod
     def get_toppings(cls):
+        """Return a list of available Topping objects."""
         return [cls(name, price) for name, price in cls.toppings.items()]
